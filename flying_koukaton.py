@@ -4,7 +4,6 @@ import pygame as pg
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-
 def main():
     pg.display.set_caption("はばたけ！こうかとん")
     screen = pg.display.set_mode((800, 600))
@@ -33,13 +32,13 @@ def main():
         #出力部
         key_lst = pg.key.get_pressed()
         if key_lst[pg.K_UP]:
-            cr_rct.move_ip(0,-1)
+            cr_rct.y-=(1)
         if key_lst[pg.K_DOWN]:
-            cr_rct.move_ip(0,1)
+            cr_rct.y+=(1)
         if key_lst[pg.K_RIGHT]:
-            cr_rct.move_ip(2,0)
+            cr_rct.x+=(2)
         if key_lst[pg.K_LEFT]:
-            cr_rct.move_ip(-1,0)   
+            cr_rct.x-=(1)   
         screen.blit(cr_imag, cr_rct)
   
   
