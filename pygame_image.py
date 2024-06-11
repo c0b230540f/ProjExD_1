@@ -11,19 +11,34 @@ def main():
     clock  = pg.time.Clock()
     bg_img = pg.image.load("fig/pg_bg.jpg")
     cr_img = pg.image.load("fig/3.png")
-    bgr_imp = pg.image.flip(bg_img, True ,False)
+    bgr_imp = pg.transform.flip(bg_img, True ,False)
     cr_imag= pg.transform.flip(cr_img ,True ,False)
+    cr_rct = cr_img.get_rect()  
+    cr_rct.center = 300, 200    
     tmr = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
-        x = tmr%800
+        #描画
+        x = tmr%3200
         screen.blit(bg_img, [-x, 0])
-        screen.blit(bgr_imp[-x-1600,0])
-        cr_rct = cr_imag.get_rect()
-        cr_rct.center = 300,200
+        screen.blit(bgr_imp,[-x+1600,0])
+        screen.blit(bg_img,[-x+3200,0])
+        screen.blit(bgr_imp,[-x+4800,0])
+
+        key_lst = pg.key.get_pressed()
+        if key_lst[pg.K_UP]:
+            cr_rct.move_ip(0,-1)
+        if key_lst[pg.K_DOWN]:
+            cr_rct.move_ip(0,1)
+        if key_lst[pg.K_RIGHT]:
+            cr_rct.move_ip(1,0)
+        if key_lst[pg.K_LEFT]:
+            cr_rct.move_ip(-1,0)   
         screen.blit(cr_imag, cr_rct)
+  
+  
         pg.display.update()
         tmr += 1        
         clock.tick(200)
