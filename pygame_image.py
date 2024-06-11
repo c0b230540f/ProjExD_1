@@ -11,6 +11,7 @@ def main():
     clock  = pg.time.Clock()
     bg_img = pg.image.load("fig/pg_bg.jpg")
     cr_img = pg.image.load("fig/3.png")
+    bgr_imp = pg.image.flip(bg_img, True ,False)
     cr_imag= pg.transform.flip(cr_img ,True ,False)
     tmr = 0
     while True:
@@ -19,6 +20,7 @@ def main():
 
         x = tmr%800
         screen.blit(bg_img, [-x, 0])
+        screen.blit(bgr_imp[-x-1600,0])
         cr_rct = cr_imag.get_rect()
         cr_rct.center = 300,200
         screen.blit(cr_imag, cr_rct)
